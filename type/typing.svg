@@ -7,79 +7,155 @@
     viewBox="0 0 900 300"
 >
 
-<style>
+<defs>
 
-@font-face {
-    font-family: "1942 Report";
+    <!-- ====================================================
+         FONT
+         ==================================================== -->
 
-    src:
-        url("data:font/woff2;base64,d09GMgABAAAAAAKcAA4AAAAABLgAAAJKAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABk4ABAgMCYJTCgEqEkgBNgIkAwQLBAAEIAWCHAcgDAwb6AMAHoVxw13iqFGWWFqLJb8iqN8P3XsBYBl+QY0aCFRUbHy4Zdu6Co9OdCo7vv7/71z+O3aTgD+v+gjVoO2QGnWAqKNn9F7mMsdSEtSO/sQttQcwkOenQMMyjf6fuqx/Gz2fzUYwnEhgo3UeD2iEe7vuLdVs3mQB6TU+KsO1JPC2PzvtS//Z27t6A9bg30hbBfaSDC+Q9gFaC+AneUlA1fr+rS7eHwhd8SDgvu8OqpScndoEREZUcjLXnY8JSFlAjBCbgJKMKjf0q6eaRJEh20kyVDEbS3JjP6jORSlGHchhaz+HHLb3CV+ji+MmRWnYJqA0F2xMGIUS81ngvErv/NoElOU95IaBY+1E41N5ER25XBCCCr8/1uZRXiSUSlz+WtWuR7m5d4MVafkIBZWZ3DNWqaaM7aD6AcLvm0Um0d2dRIQO5QLi9g39itAtrLudBcNbREWU+j90kVDZJqAq751pirxICLUBIECiJKVmGoHSqrIy1Q2rKS9Xi9VVVKjHGiorNWJNVVWasZbqaq1YW02NdqyjtlYnInz0ueLbTWRm5tXaZfgH3/+82GynUHzpfUkGmAtK8j+z6WMEUCy+CRH/EYj4oh4kUE0SW0CgwiGDKK3CPlhToZ0mTFSJAeXHUh9Vptv1OuVa3VhUkRVThrZVFJUkxWQVOXQ01y6tLnVp09RTlYLV1OU0pdTZpFWUNTXYJVSUuIR4ueFpblVFXdPt8SsNYRilebluTk6uUL276oitzHP3nBsoecVXmAbC5iejvz8tqxgFAAA=")
-        format("woff2");
+    <style>
 
-    font-weight: normal;
-    font-style: normal;
-}
+        @font-face {
+            font-family: "1942 Report";
 
-.terminal {
-    font-family: "1942 Report", monospace;
-    font-size: 44px;
-    fill: #00ff66;
-}
+            src:
+                url(
+                    "data:font/woff2;base64,d09GMgABAAAAAAKcAA4AAAAABLgAAAJKAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABk4ABAgMCYJTCgEqEkgBNgIkAwQLBAAEIAWCHAcgDAwb6AMAHoVxw13iqFGWWFqLJb8iqN8P3XsBYBl+QY0aCFRUbHy4Zdu6Co9OdCo7vv7/71z+O3aTgD+v+gjVoO2QGnWAqKNn9F7mMsdSEtSO/sQttQcwkOenQMMyjf6fuqx/Gz2fzUYwnEhgo3UeD2iEe7vuLdVs3mQB6TU+KsO1JPC2PzvtS//Z27t6A9bg30hbBfaSDC+Q9gFaC+AneUlA1fr+rS7eHwhd8SDgvu8OqpScndoEREZUcjLXnY8JSFlAjBCbgJKMKjf0q6eaRJEh20kyVDEbS3JjP6jORSlGHchhaz+HHLb3CV+ji+MmRWnYJqA0F2xMGIUS81ngvErv/NoElOU95IaBY+1E41N5ER25XBCCCr8/1uZRXiSUSlz+WtWuR7m5d4MVafkIBZWZ3DNWqaaM7aD6AcLvm0Um0d2dRIQO5QLi9g39itAtrLudBcNbREWU+j90kVDZJqAq751pirxICLUBIECiJKVmGoHSqrIy1Q2rKS9Xi9VVVKjHGiorNWJNVVWasZbqaq1YW02NdqyjtlYnInz0ueLbTWRm5tXaZfgH3/+82GynUHzpfUkGmAtK8j+z6WMEUCy+CRH/EYj4oh4kUE0SW0CgwiGDKK3CPlhToZ0mTFSJAeXHUh9Vptv1OuVa3VhUkRVThrZVFJUkxWQVOXQ01y6tLnVp09RTlYLV1OU0pdTZpFWUNTXYJVSUuIR4ueFpblVFXdPt8SsNYRilebluTk6uUL276oitzHP3nBsoecVXmAbC5iejvz8tqxgFAAA="
+                )
+                format("woff2");
+        }
 
-.cursor {
-    fill: #00ff66;
-}
+        .terminal {
+            font-family: "1942 Report", monospace;
+            font-size: 44px;
+            fill: #00ff66;
+        }
 
-</style>
+    </style>
+
+
+    <!-- ====================================================
+         CRT GLOW
+         ==================================================== -->
+
+    <filter id="glow">
+
+        <feGaussianBlur
+            stdDeviation="1.4"
+            result="blur"
+        />
+
+        <feMerge>
+
+            <feMergeNode in="blur"/>
+
+            <feMergeNode in="SourceGraphic"/>
+
+        </feMerge>
+
+    </filter>
+
+
+    <!-- ====================================================
+         SCREEN SCANLINES
+         ==================================================== -->
+
+    <pattern
+        id="scanlines"
+        width="4"
+        height="6"
+        patternUnits="userSpaceOnUse"
+    >
+
+        <rect
+            width="4"
+            height="3"
+            fill="#00ff66"
+            opacity="0.025"
+        />
+
+    </pattern>
+
+</defs>
 
 
 <!-- ========================================================
-     TERMINAL BACKGROUND
+     CRT SCREEN
      ======================================================== -->
 
 <rect
     width="900"
     height="300"
-    rx="12"
-    fill="#050805"
+    rx="14"
+    fill="#030603"
 />
 
 
-<!-- Terminal border -->
+<!-- CRT glow -->
 
 <rect
-    x="2"
-    y="2"
-    width="896"
-    height="296"
+    x="4"
+    y="4"
+    width="892"
+    height="292"
     rx="12"
     fill="none"
     stroke="#00ff66"
     stroke-width="1"
-    opacity="0.25"
+    opacity="0.22"
+/>
+
+
+<!-- Scanlines -->
+
+<rect
+    width="900"
+    height="300"
+    fill="url(#scanlines)"
 />
 
 
 <!-- ========================================================
-     TEXT
-     ======================================================== -->
+     TYPING TEXT
+     ========================================================
+
+     Each character:
+
+     invisible
+          ↓
+     appears
+          ↓
+     remains
+          ↓
+     disappears at loop
+          ↓
+     starts again
+     ========================================================
 
 
 <text
     x="50.000"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
     H
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.000s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.000000;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -90,17 +166,25 @@
     x="76.400"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    e
+    i
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.100s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.015038;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -111,17 +195,25 @@
     x="102.800"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    y
+    ,
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.200s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.030075;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -129,20 +221,28 @@
 
 
 <text
-    x="129.200"
+    x="155.600"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    ,
+    I
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.300s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.060150;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -153,17 +253,25 @@
     x="182.000"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    I
+    t
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.500s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.075188;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -174,17 +282,25 @@
     x="208.400"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    t
+    &#x27;
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.600s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.090226;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -195,17 +311,25 @@
     x="234.800"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    &#x27;
+    s
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.700s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.105263;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -213,20 +337,28 @@
 
 
 <text
-    x="261.200"
+    x="287.600"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    s
+    m
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="0.800s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.135338;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -237,38 +369,25 @@
     x="314.000"
     y="80"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    m
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.000s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
-
-</text>
-
-
-<text
-    x="340.400"
-    y="80"
-    class="terminal"
-    opacity="0"
->
-
     e
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.100s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.150376;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -279,17 +398,25 @@
     x="50.000"
     y="145"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    S
+    M
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.600s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.233083;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -300,38 +427,25 @@
     x="76.400"
     y="145"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    p
+    y
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.700s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
 
-</text>
+        values="0;1;1;0"
 
+        keyTimes="
+            0;
+            0.248120;
+            0.699248;
+            1
+        "
 
-<text
-    x="102.800"
-    y="145"
-    class="terminal"
-    opacity="0"
->
+        dur="6.650s"
 
-    o
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.800s"
-        dur="0.01s"
         repeatCount="indefinite"
     />
 
@@ -342,17 +456,25 @@
     x="129.200"
     y="145"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    i
+    n
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="1.900s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.278195;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -363,17 +485,54 @@
     x="155.600"
     y="145"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    l
+    a
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="2.000s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.293233;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
+        repeatCount="indefinite"
+    />
+
+</text>
+
+
+<text
+    x="182.000"
+    y="145"
+    class="terminal"
+    filter="url(#glow)"
+    opacity="0"
+>
+    m
+
+    <animate
+        attributeName="opacity"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.308271;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -384,17 +543,54 @@
     x="208.400"
     y="145"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
+    e
 
+    <animate
+        attributeName="opacity"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.323308;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
+        repeatCount="indefinite"
+    />
+
+</text>
+
+
+<text
+    x="261.200"
+    y="145"
+    class="terminal"
+    filter="url(#glow)"
+    opacity="0"
+>
     !
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="2.200s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.353383;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -405,38 +601,25 @@
     x="50.000"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    N
+    i
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="2.700s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
 
-</text>
+        values="0;1;1;0"
 
+        keyTimes="
+            0;
+            0.436090;
+            0.699248;
+            1
+        "
 
-<text
-    x="76.400"
-    y="210"
-    class="terminal"
-    opacity="0"
->
+        dur="6.650s"
 
-    e
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="2.800s"
-        dur="0.01s"
         repeatCount="indefinite"
     />
 
@@ -447,17 +630,25 @@
     x="102.800"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    e
+    l
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="2.900s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.466165;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -468,17 +659,25 @@
     x="129.200"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    d
+    o
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.000s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.481203;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -489,17 +688,25 @@
     x="155.600"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    s
+    v
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.100s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.496241;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -507,20 +714,28 @@
 
 
 <text
-    x="208.400"
+    x="182.000"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    m
+    e
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.300s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.511278;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -531,17 +746,25 @@
     x="234.800"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    o
+    t
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.400s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.541353;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -552,17 +775,25 @@
     x="261.200"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    r
+    o
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.500s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.556391;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -570,20 +801,28 @@
 
 
 <text
-    x="287.600"
+    x="314.000"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
     e
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.600s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.586466;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -594,17 +833,25 @@
     x="340.400"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    c
+    a
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.800s"
-        dur="0.01s"
+
+        values="0;1;1;0"
+
+        keyTimes="
+            0;
+            0.601504;
+            0.699248;
+            1
+        "
+
+        dur="6.650s"
+
         repeatCount="indefinite"
     />
 
@@ -615,101 +862,25 @@
     x="366.800"
     y="210"
     class="terminal"
+    filter="url(#glow)"
     opacity="0"
 >
-
-    o
+    t
 
     <animate
         attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="3.900s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
 
-</text>
+        values="0;1;1;0"
 
+        keyTimes="
+            0;
+            0.616541;
+            0.699248;
+            1
+        "
 
-<text
-    x="393.200"
-    y="210"
-    class="terminal"
-    opacity="0"
->
+        dur="6.650s"
 
-    f
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="4.000s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
-
-</text>
-
-
-<text
-    x="419.600"
-    y="210"
-    class="terminal"
-    opacity="0"
->
-
-    f
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="4.100s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
-
-</text>
-
-
-<text
-    x="446.000"
-    y="210"
-    class="terminal"
-    opacity="0"
->
-
-    e
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="4.200s"
-        dur="0.01s"
-        repeatCount="indefinite"
-    />
-
-</text>
-
-
-<text
-    x="472.400"
-    y="210"
-    class="terminal"
-    opacity="0"
->
-
-    e
-
-    <animate
-        attributeName="opacity"
-        values="0;1"
-        keyTimes="0;1"
-        begin="4.300s"
-        dur="0.01s"
         repeatCount="indefinite"
     />
 
@@ -721,46 +892,43 @@
      ======================================================== -->
 
 <rect
-    class="cursor"
-
     x="50.000"
-    y="40.000"
-
+    y="41.000"
     width="5"
     height="44"
+    fill="#00ff66"
+    filter="url(#glow)"
 >
 
-    <!-- Cursor follows the typed characters -->
+    <!-- Cursor movement -->
 
     <animate
         attributeName="x"
 
-        values="50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;261.200;287.600;314.000;340.400;366.800;50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;261.200;287.600;314.000;340.400;366.800;393.200;419.600;446.000;472.400;498.800"
+        values="50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;261.200;287.600;314.000;340.400;50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;261.200;287.600;50.000;76.400;102.800;129.200;155.600;182.000;208.400;234.800;261.200;287.600;314.000;340.400;366.800;393.200"
 
-        keyTimes="0.000000;0.014706;0.029412;0.044118;0.058824;0.073529;0.088235;0.102941;0.117647;0.132353;0.147059;0.161765;0.176471;0.235294;0.250000;0.264706;0.279412;0.294118;0.308824;0.323529;0.338235;0.397059;0.411765;0.426471;0.441176;0.455882;0.470588;0.485294;0.500000;0.514706;0.529412;0.544118;0.558824;0.573529;0.588235;0.602941;0.617647;0.632353;0.647059"
+        keyTimes="0.000000;0.015038;0.030075;0.045113;0.060150;0.075188;0.090226;0.105263;0.120301;0.135338;0.150376;0.165414;0.233083;0.248120;0.263158;0.278195;0.293233;0.308271;0.323308;0.338346;0.353383;0.368421;0.436090;0.451128;0.466165;0.481203;0.496241;0.511278;0.526316;0.541353;0.556391;0.571429;0.586466;0.601504;0.616541;0.631579"
 
-        dur="6.800s"
+        dur="6.650s"
 
         repeatCount="indefinite"
     />
 
-
-    <!-- Cursor moves down with each line -->
 
     <animate
         attributeName="y"
 
-        values="40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;40.000;105.000;105.000;105.000;105.000;105.000;105.000;105.000;105.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000;170.000"
+        values="41.000;41.000;41.000;41.000;41.000;41.000;41.000;41.000;41.000;41.000;41.000;41.000;106.000;106.000;106.000;106.000;106.000;106.000;106.000;106.000;106.000;106.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000;171.000"
 
-        keyTimes="0.000000;0.014706;0.029412;0.044118;0.058824;0.073529;0.088235;0.102941;0.117647;0.132353;0.147059;0.161765;0.176471;0.235294;0.250000;0.264706;0.279412;0.294118;0.308824;0.323529;0.338235;0.397059;0.411765;0.426471;0.441176;0.455882;0.470588;0.485294;0.500000;0.514706;0.529412;0.544118;0.558824;0.573529;0.588235;0.602941;0.617647;0.632353;0.647059"
+        keyTimes="0.000000;0.015038;0.030075;0.045113;0.060150;0.075188;0.090226;0.105263;0.120301;0.135338;0.150376;0.165414;0.233083;0.248120;0.263158;0.278195;0.293233;0.308271;0.323308;0.338346;0.353383;0.368421;0.436090;0.451128;0.466165;0.481203;0.496241;0.511278;0.526316;0.541353;0.556391;0.571429;0.586466;0.601504;0.616541;0.631579"
 
-        dur="6.800s"
+        dur="6.650s"
 
         repeatCount="indefinite"
     />
 
 
-    <!-- Cursor blinking -->
+    <!-- Cursor blink -->
 
     <animate
         attributeName="opacity"
@@ -776,7 +944,50 @@
 
 
 <!-- ========================================================
-     END
+     CRT FLICKER
      ======================================================== -->
+
+<rect
+    width="900"
+    height="300"
+    fill="#ffffff"
+    opacity="0"
+>
+
+    <animate
+        attributeName="opacity"
+
+        values="
+            0;
+            0;
+            0.018;
+            0;
+            0.008;
+            0;
+            0;
+            0.012;
+            0
+        "
+
+        dur="3.7s"
+
+        repeatCount="indefinite"
+    />
+
+</rect>
+
+
+<!-- ========================================================
+     VERY SUBTLE SCREEN NOISE
+     ======================================================== -->
+
+<rect
+    width="900"
+    height="300"
+    fill="url(#scanlines)"
+    opacity="0.45"
+    pointer-events="none"
+/>
+
 
 </svg>
