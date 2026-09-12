@@ -1,7 +1,7 @@
 <p align="center">
   <img
-    src="./type/typing.svg"
-    width="700"
-    alt="Terminal typing animation"
+    src="./typing.svg"
+    width="800"
+    alt="Retro terminal typing animation"
   />
 </p>
