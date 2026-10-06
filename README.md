@@ -6,7 +6,6 @@
 <br>
 <p>Yeah that's full open source (you can peak in https://github.com/spoilpetal/spoilpetal.github.io/tree/main/svg-vibe-studio))</p>
 <br>
-<p>Contact me</p>
+<p>Contact me (unnecessary)</p>
 <p>Mail : spoilpetal(at)proton.me</p>
-<br>
 <p>Jabber/XMPP : spoilpetal(at)conversations.im</p>
