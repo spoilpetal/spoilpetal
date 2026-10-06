@@ -4,7 +4,7 @@
 <br>
 <p>Go to https://spoilpetal.github.io/svg-vibe-studio for build this kind of svg</p>
 <br>
-<p>Yeah that's full open source (you can peak in https://github.com/spoilpetal/spoilpetal.github.io/tree/main/svg-vibe-studio))</p>
+<p>Yeah it's full open source (you can peak in https://github.com/spoilpetal/spoilpetal.github.io/tree/main/svg-vibe-studio)</p>
 <br>
 <p>Contact me (unnecessary)</p>
 <p>Mail : spoilpetal(at)proton.me</p>
